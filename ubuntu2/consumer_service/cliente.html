@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>WebSocket Cliente</title></head>
+<body>
+  <h1>Mensagens recebidas:</h1>
+  <ul id="mensagens"></ul>
+
+  <script>
+    const socket = new WebSocket("ws://192.168.246.39:8765");
+
+    socket.onmessage = (event) => {
+      const li = document.createElement("li");
+      li.textContent = event.data;
+      document.getElementById("mensagens").appendChild(li);
+    };
+
+    socket.onopen = () => console.log("Ligado ao WebSocket!");
+    socket.onclose = () => console.log("Ligação encerrada.");
+  </script>
+</body>
+</html>
